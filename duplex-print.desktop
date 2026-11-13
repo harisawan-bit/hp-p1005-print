@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Print duplex (P1005)
+Exec=duplex-print %f
+MimeType=application/pdf;
+NoDisplay=false
