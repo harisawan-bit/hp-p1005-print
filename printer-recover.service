@@ -1,0 +1,12 @@
+[Unit]
+Description=HP LaserJet P1005 self-heal (usblp bind + firmware + p910nd + queue enable)
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/printer-recover
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
