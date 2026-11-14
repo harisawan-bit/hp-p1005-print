@@ -84,7 +84,10 @@ static int conn_9100(void) { // established connection to p910nd (port 9100 = 23
     return hit;
 }
 
-static int busy(void) { return popen_has("lpstat -o 2>/dev/null", NULL) || device_held() || conn_9100(); }
+static int busy(void) {
+    return device_held() || conn_9100() ||
+        (!system("systemctl is-active --quiet p910nd") && popen_has("lpstat -o 2>/dev/null", NULL));
+}
 static int fw_ok(void) { return access(DEV, F_OK) == 0 && popen_has("usb_printerid " DEV " 2>/dev/null", "FWVER"); }
 
 static int upload_fw(void) {
